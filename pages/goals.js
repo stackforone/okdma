@@ -176,7 +176,7 @@ export default function Goals() {
                 <Gift className="h-5 w-5" />
                 <span>รางวัล</span>
               </Link>
-              <Link href="setting" className="flex items-center space-x-2 text-white hover:text-indigo-200 transition py-2">
+              <Link href="#" className="flex items-center space-x-2 text-white hover:text-indigo-200 transition py-2">
                 <User className="h-5 w-5" />
                 <span>โปรไฟล์</span>
               </Link>
