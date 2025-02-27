@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Head from 'next/head';
 import { Calendar, CheckSquare, Clock, BookOpen, Gift, Target, PlusCircle, User, Menu, X } from 'lucide-react';
 import Link from 'next/link'; // นำเข้า Link จาก next/link
+import supabase from '../lib/supabase'; // นำเข้า supabase client
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -30,19 +31,30 @@ export default function Home() {
     setTasks(updatedTasks);
   };
 
-  const addTask = (e) => {
-    e.preventDefault();
-    if (newTask.trim()) {
-      const newTaskObj = {
-        id: Date.now(),
-        title: newTask,
-        completed: false,
-        points: 10,
-      };
-      setTasks([...tasks, newTaskObj]);
-      setNewTask('');
+  
+  
+  const addTask = async () => {
+    const newTaskObj = { title: newTask, completed: false, points: 0 };
+  
+    // ส่งข้อมูลไปที่ Supabase
+    const { data, error } = await supabase.from('tasks').insert([newTaskObj]);
+  
+    if (error) {
+      console.error("Error inserting task:", error);
+    } else {
+      // ตรวจสอบว่า data ไม่เป็น null และมีข้อมูล
+      if (data && data.length > 0) {
+        console.log('Task added successfully:', data); // Debug line
+        // อัปเดต tasks หลังจากบันทึกสำเร็จ
+        setTasks([...tasks, { ...newTaskObj, id: data[0].id }]);
+        setNewTask(''); // Reset input field after adding task
+      } else {
+        console.error("No data returned from the insert query");
+      }
     }
   };
+
+
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800 font-prompt">
@@ -78,14 +90,14 @@ export default function Home() {
                 <BookOpen className="h-5 w-5" />
                 <span>บันทึก</span>
               </Link>
-              <a href="#" className="flex items-center space-x-1 hover:text-indigo-200 transition">
+              <a href="#" className="flex items-center space-x-1 hover:text-indigo-200 transition">  
                 <Gift className="h-5 w-5" />
                 <span>รางวัล</span>
               </a>
             </nav>
-            <Link href="/setting" className="flex items-center space-x-2 text-white hover:text-indigo-200 transition py-2">
-                <User className="h-5 w-5" />
-                <span>โปรไฟล์</span>
+            <Link href="/profile" className="flex items-center space-x-1 bg-white text-indigo-600 px-4 py-2 rounded-lg hover:bg-indigo-100 transition font-medium">
+              <User className="h-5 w-5" />
+              <span>โปรไฟล์</span>
             </Link>
           </div>
           
@@ -118,10 +130,10 @@ export default function Home() {
                 <Gift className="h-5 w-5" />
                 <span>รางวัล</span>
               </a>
-              <Link href="/setting" className="flex items-center space-x-2 text-white hover:text-indigo-200 transition py-2">
+              <Link href="/profile" className="flex items-center space-x-2 text-white hover:text-indigo-200 transition py-2">
                 <User className="h-5 w-5" />
                 <span>โปรไฟล์</span>
-              </Link>
+            </Link>
             </nav>
           </div>
         )}
