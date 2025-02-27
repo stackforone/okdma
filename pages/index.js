@@ -74,7 +74,7 @@ export default function Home() {
                 <Target className="h-5 w-5" />
                 <span>เป้าหมาย</span>
               </Link>
-              <Link href="/่journal" className="flex items-center space-x-1 hover:text-indigo-200 transition">
+              <Link href="/journal" className="flex items-center space-x-1 hover:text-indigo-200 transition">
                 <BookOpen className="h-5 w-5" />
                 <span>บันทึก</span>
               </Link>
@@ -83,10 +83,10 @@ export default function Home() {
                 <span>รางวัล</span>
               </a>
             </nav>
-            <button className="flex items-center space-x-1 bg-white text-indigo-600 px-4 py-2 rounded-lg hover:bg-indigo-100 transition font-medium">
-              <User className="h-5 w-5" />
-              <span>โปรไฟล์</span>
-            </button>
+            <Link href="/setting" className="flex items-center space-x-2 text-white hover:text-indigo-200 transition py-2">
+                <User className="h-5 w-5" />
+                <span>โปรไฟล์</span>
+            </Link>
           </div>
           
           {/* Mobile menu button */}
@@ -110,7 +110,7 @@ export default function Home() {
                 <Target className="h-5 w-5" />
                 <span>เป้าหมาย</span>
               </Link>
-              <Link href="/่journal" className="flex items-center space-x-2 text-white hover:text-indigo-200 transition py-2">
+              <Link href="/journal" className="flex items-center space-x-2 text-white hover:text-indigo-200 transition py-2">
                 <BookOpen className="h-5 w-5" />
                 <span>บันทึก</span>
               </Link>
@@ -118,10 +118,10 @@ export default function Home() {
                 <Gift className="h-5 w-5" />
                 <span>รางวัล</span>
               </a>
-              <a href="#" className="flex items-center space-x-2 text-white hover:text-indigo-200 transition py-2">
+              <Link href="/setting" className="flex items-center space-x-2 text-white hover:text-indigo-200 transition py-2">
                 <User className="h-5 w-5" />
                 <span>โปรไฟล์</span>
-              </a>
+              </Link>
             </nav>
           </div>
         )}
