@@ -9,7 +9,7 @@ export default function Profile() {
   const [activeTab, setActiveTab] = useState('ข้อมูลทั่วไป');
   const [isEditing, setIsEditing] = useState(false);
   const [userData, setUserData] = useState({
-    name: 'สมชาย ใจดี',
+    name: 'เทส ระบบ',
     email: 'somchai@example.com',
     birthdate: '15 มีนาคม 1990',
     bio: 'นักพัฒนาซอฟต์แวร์ที่ชอบการเรียนรู้สิ่งใหม่ๆ หลงใหลในการอ่านหนังสือและการเดินทาง',
@@ -620,11 +620,3 @@ export default function Profile() {
     </div>
   );
 }
-```
-
-ส่วนของการตั้งค่าได้เพิ่มเนื้อหาครบถ้วนประกอบด้วย:
-1. การตั้งค่าบัญชีผู้ใช้ (เปลี่ยนอีเมลและรหัสผ่าน)
-2. การตั้งค่าการแจ้งเตือน
-3. การตั้งค่าความเป็นส่วนตัว
-4. เขตอันตราย (ลบบัญชีและออกจากระบบ)
-โดยออกแบบให้สอดคล้องกับสไตล์เดิมของแอปพลิเคชัน ใช้คอมโพเนนต์และไอคอนจาก Lucide-react พร้อมการตอบสนองตามสถานะต่าง ๆ
